@@ -5,7 +5,7 @@
  */
 var config = {
   // Local Storage Name
-  storeName: "notes-webpack-cjs",
+  storeName: "notes-react",
 
   // Decide `localStorage` vs. REST backend.
   useLocalStorage: false
