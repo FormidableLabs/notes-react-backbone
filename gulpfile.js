@@ -33,7 +33,7 @@ gulp.task("jshint:client", function () {
   gulp
     .src([
       "app/js/*.js",
-      "app/js/app/**/*.js"
+      "app/js/app/**/*.js(|x)"
     ])
     .pipe(jshint(_jsonCfg(".jshint-frontend.json")))
     .pipe(jshint.reporter("default"))
@@ -169,9 +169,12 @@ gulp.task("karma:all",  ["karma:mocha-all", "karma:jasmine-all"]);
 
 gulp.task("test",       ["karma:fast"]);
 
-gulp.task("check",      ["jshint", "test"]);
-gulp.task("check:ci",   ["jshint", "karma:ci"]);
-gulp.task("check:all",  ["jshint", "karma:all"]);
+gulp.task("check",      ["jshint"]);
+// TODO, "test"]);
+gulp.task("check:ci",   ["jshint"]);
+// TODO, "karma:ci"]);
+gulp.task("check:all",  ["jshint"]);
+// TODO, "karma:all"]);
 
 // ----------------------------------------------------------------------------
 // Builders
@@ -263,11 +266,13 @@ gulp.task("watch:jasmine", function () {
   ], ["build:jasmine"]);
 });
 
-gulp.task("watch", ["watch:dist", "watch:mocha", "watch:jasmine"]);
+gulp.task("watch", ["watch:dist"]);
+// TODO, "watch:mocha", "watch:jasmine"]);
 
 gulp.task("build:prod", ["clean:dist"], _webpack(buildCfg));
 
-gulp.task("build:dev", ["build:dist", "build:mocha", "build:jasmine"]);
+gulp.task("build:dev", ["build:dist"]);
+// TODO, "build:mocha", "build:jasmine"]);
 
 // ----------------------------------------------------------------------------
 // Servers

@@ -18,6 +18,7 @@ module.exports = {
   },
   module: {
     loaders: [
+      { test: /\.jsx$/, loader: "jsx-loader" },
       { test: /\.hbs$/, loader: "handlebars-loader" }
     ]
   },
