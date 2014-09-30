@@ -13,9 +13,9 @@ var connect = require("gulp-connect");
 var webpack = require("webpack");
 var rimraf = require("gulp-rimraf");
 
-var buildCfg = require("./webpack.config.js");
-var mochaCfg = require("./test/mocha/webpack.config.js");
-var jasmineCfg = require("./test/jasmine/webpack.config.js");
+var buildCfg = require("./webpack.config");
+var mochaCfg = require("./test/mocha/webpack.config");
+var jasmineCfg = require("./test/jasmine/webpack.config");
 
 // ----------------------------------------------------------------------------
 // Helpers
@@ -33,7 +33,7 @@ gulp.task("jshint:client", function () {
   gulp
     .src([
       "app/js/*.js",
-      "app/js/app/**/*.js(|x)"
+      "app/js/app/**/*.{js,jsx}"
     ])
     .pipe(jshint(_jsonCfg(".jshint-frontend.json")))
     .pipe(jshint.reporter("default"))
@@ -56,7 +56,7 @@ gulp.task("jshint:backend", function () {
   gulp
     .src([
       "server/**/*.js",
-      "gulpfile.js"
+      "*.js"
     ])
     .pipe(jshint(_jsonCfg(".jshint-backend.json")))
     .pipe(jshint.reporter("default"))
@@ -224,7 +224,7 @@ gulp.task("build:dist", _webpack(_.merge({}, buildCfg, {
 
 gulp.task("watch:dist", function () {
   gulp.watch([
-    "app/js/app/**/*.js"
+    "app/js/app/**/*.{js,jsx}"
   ], ["build:dist"]);
 });
 
@@ -243,7 +243,7 @@ gulp.task("build:mocha", _webpack(mochaCfg));
 
 gulp.task("watch:mocha", function () {
   gulp.watch([
-    "app/js/app/**/*.js",
+    "app/js/app/**/*.{js,jsx}",
     "test/mocha/js/**/*.js"
   ], ["build:mocha"]);
 });
@@ -261,7 +261,7 @@ gulp.task("build:jasmine", _webpack(jasmineCfg));
 
 gulp.task("watch:jasmine", function () {
   gulp.watch([
-    "app/js/app/**/*.js",
+    "app/js/app/**/*.{js,jsx}",
     "test/jasmine/js/**/*.js"
   ], ["build:jasmine"]);
 });
