@@ -17,13 +17,13 @@ require("bootstrap/dist/js/bootstrap");
 
 var NotesCollection = require("./collections/notes");
 
-var NoteItem = React.createClass({
+var NotesItem = React.createClass({
   render: function () {
     /*jshint ignore:start */
     return (
-      <tr>
+      <tr className="notes-item">
         <td className="note-name">
-          <div className="note-title note-view">{this.props.item.title}</div>
+          <div className="note-title note-view">{this.props.note.get("title")}</div>
         </td>
         <td className="note-action">
           <div className="btn-group btn-group-sm pull-right">
@@ -41,6 +41,43 @@ var NoteItem = React.createClass({
   }
 });
 
+var Notes = React.createClass({
+  render: function () {
+    /*jshint ignore:start */
+
+    var noteNodes = this.props.notes.map(function (note) {
+      return (
+        <NotesItem note={note} key={note.get("id")} />
+      );
+    });
+
+    return (
+      <div id="notes" className="region region-notes">
+        <table id="notes-list" className="table table-curved table-hover">
+          <tbody>
+            <tr className="notes-new">
+              <td className="note-name">
+                <input id="note-new-input"
+                       className="form-control"
+                       placeholder="Write a new note." autofocus />
+              </td>
+              <td className="note-action">
+                <button id="note-create"
+                        type="button"
+                        className="btn btn-default btn-sm pull-right">
+                  <span className="glyphicon glyphicon-plus"></span>
+                </button>
+              </td>
+            </tr>
+            {noteNodes}
+          </tbody>
+        </table>
+      </div>
+    );
+    /*jshint ignore:end */
+  }
+});
+
 $(function () {
   // Initialize application components.
   // The collection object comes first as views depend on it.
@@ -53,9 +90,9 @@ $(function () {
 
     React.renderComponent(
       /*jshint ignore:start */
-      <NoteItem item={collection.at(0).toJSON()} />,
+      <Notes notes={collection} />,
       /*jshint ignore:end */
-      $("#notes-list tbody")[0]
+      $(".container")[0]
     );
   });
 
