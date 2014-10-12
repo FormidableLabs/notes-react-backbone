@@ -16,68 +16,7 @@ window.jQuery = $;
 require("bootstrap/dist/js/bootstrap");
 
 var NotesCollection = require("./collections/notes");
-
-var NotesItem = React.createClass({
-  render: function () {
-    return (/*jshint ignore:start */
-      <tr className="notes-item">
-        <td className="note-name">
-          <div className="note-title note-view">
-            {this.props.note.get("title")}
-          </div>
-        </td>
-        <td className="note-action">
-          <div className="btn-group btn-group-sm pull-right">
-            <button className="btn btn-default note-edit">
-              <span className="glyphicon glyphicon-pencil"></span>
-            </button>
-            <button className="btn btn-default note-delete">
-              <span className="glyphicon glyphicon-trash"></span>
-            </button>
-          </div>
-        </td>
-      </tr>
-    /*jshint ignore:end */);
-  }
-});
-
-var Notes = React.createClass({
-  render: function () {
-
-    var noteNodes = this.props.notes.map(function (note) {
-      return (/*jshint ignore:start */
-        <NotesItem note={note} key={note.get("id")} />
-      /*jshint ignore:end */);
-    });
-
-    return (/*jshint ignore:start */
-      <div id="notes" className="region region-notes">
-        <table id="notes-list" className="table table-curved table-hover">
-          <tbody>
-            <tr className="notes-new">
-              <td className="note-name">
-                <input id="note-new-input"
-                       className="form-control"
-                       placeholder="Write a new note." autofocus />
-              </td>
-              <td className="note-action">
-                <button id="note-create"
-                        type="button"
-                        className="btn btn-default btn-sm pull-right">
-                  <span className="glyphicon glyphicon-plus"></span>
-                </button>
-              </td>
-            </tr>
-            {noteNodes}
-          </tbody>
-        </table>
-      </div>
-    /*jshint ignore:end */);
-  }
-});
-
-
-
+var Notes = require("./views/notes.jsx");
 
 // Initialize application components.
 // The collection object comes first as views depend on it.
