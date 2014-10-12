@@ -19,11 +19,12 @@ var NotesCollection = require("./collections/notes");
 
 var NotesItem = React.createClass({
   render: function () {
-    return (
-      /*jshint ignore:start */
+    return (/*jshint ignore:start */
       <tr className="notes-item">
         <td className="note-name">
-          <div className="note-title note-view">{this.props.note.get("title")}</div>
+          <div className="note-title note-view">
+            {this.props.note.get("title")}
+          </div>
         </td>
         <td className="note-action">
           <div className="btn-group btn-group-sm pull-right">
@@ -36,8 +37,7 @@ var NotesItem = React.createClass({
           </div>
         </td>
       </tr>
-      /*jshint ignore:end */
-    );
+    /*jshint ignore:end */);
   }
 });
 
@@ -45,15 +45,12 @@ var Notes = React.createClass({
   render: function () {
 
     var noteNodes = this.props.notes.map(function (note) {
-      return (
-        /*jshint ignore:start */
+      return (/*jshint ignore:start */
         <NotesItem note={note} key={note.get("id")} />
-        /*jshint ignore:end */
-      );
+      /*jshint ignore:end */);
     });
 
-    return (
-      /*jshint ignore:start */
+    return (/*jshint ignore:start */
       <div id="notes" className="region region-notes">
         <table id="notes-list" className="table table-curved table-hover">
           <tbody>
@@ -75,8 +72,7 @@ var Notes = React.createClass({
           </tbody>
         </table>
       </div>
-      /*jshint ignore:end */
-    );
+    /*jshint ignore:end */);
   }
 });
 
