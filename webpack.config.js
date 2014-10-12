@@ -28,6 +28,11 @@ module.exports = {
     }
   },
   plugins: [
+    // Globals.
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery"
+    }),
     // Manually do source maps to use alternate host.
     new webpack.SourceMapDevToolPlugin(
       "bundle.js.map",
