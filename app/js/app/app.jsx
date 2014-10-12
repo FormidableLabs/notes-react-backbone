@@ -6,12 +6,10 @@ var $ = require("jquery");
 var Backbone = require("backbone");
 var React = require("react");
 
-// jQuery: Backbone needs explicit set and bootstrap needs global. (Sigh).
-// TODO(REACT): Try to remove this / move to webpack config.
+// jQuery: Backbone needs explicit set.
 Backbone.$ = $;
 
-// Side-effect: Add in bootstrap.js
-// TODO(REACT): Try to remove this / move to webpack config.
+// Side-effect: Add in bootstrap.js (uses `window.jQuery` from config).
 require("bootstrap/dist/js/bootstrap");
 
 var NotesCollection = require("./collections/notes");
