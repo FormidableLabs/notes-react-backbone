@@ -4,6 +4,7 @@
  *
  * A single note within a list of notes.
  */
+/*jshint unused:false */
 var React = require("react");
 
 module.exports = React.createClass({

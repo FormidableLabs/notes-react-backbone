@@ -8,12 +8,12 @@
  * - "/app/views/notes-filter": Child view for query filter.
  * - "/app/views/notes-item": Child view for single note listing.
  */
+/*jshint unused:false */
 var React = require("react");
 var NotesItem = require("./notes-item.jsx");
 
 module.exports = React.createClass({
   render: function () {
-
     var noteNodes = this.props.notes.map(function (note) {
       return (/*jshint ignore:start */
         <NotesItem note={note} key={note.get("id")} />

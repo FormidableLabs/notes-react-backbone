@@ -2,6 +2,7 @@
 /**
  * Entry point.
  */
+/*jshint unused:false */
 var $ = require("jquery");
 var Backbone = require("backbone");
 var React = require("react");
