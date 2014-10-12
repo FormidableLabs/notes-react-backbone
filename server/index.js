@@ -39,6 +39,7 @@ function serverSetup() {
     var title = req.body.title,
       text = req.body.text,
       id = req.params.id;
+
     db.run("update notes set title=?, text=? where id=?", title, text, id)
       .prepare("select * from notes where id=?", id)
       .get(function (err, row) {
@@ -47,13 +48,13 @@ function serverSetup() {
   });
 
   // TODO: sanitize input
-  app["delete"]("/notes/:id", function (req, res, id) {
+  app["delete"]("/notes/:id", function (req, res) {
     db.run("delete from notes where id=?", req.params.id, function () {
       res.json({});
     });
   });
 
-  app.listen(3000);
+  app.listen(PORT);
 }
 
 db = new sql.Database(dbPath, sql.OPEN_READWRITE, serverSetup);

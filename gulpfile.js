@@ -2,7 +2,6 @@
  * Gulpfile
  */
 var fs = require("fs");
-var path = require("path");
 var _ = require("lodash");
 var gulp = require("gulp");
 var gutil = require("gulp-util");

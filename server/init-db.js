@@ -9,7 +9,12 @@ var sql = require("sqlite3"),
   createTable = "create table notes " + columns,
   dropTable = "drop table if exists notes",
 
-  db = new sql.Database(dbPath, openState, function (error) {
+  db = new sql.Database(dbPath, openState, function (err) {
+    if (err) {
+      db.close();
+      throw err;
+    }
+
     db.run(dropTable, function () {
       db.run(createTable);
     });

@@ -19,4 +19,7 @@ Tasks
     * https://github.com/clayallsopp/react.backbone
     * https://github.com/magalhas/backbone-react-component
 
+## Issues
 
+* React Components need to be imported to work, but with JsHint ignoring
+  JSX stuff, you can't tell from unused stuff.

@@ -1,11 +1,9 @@
 /**
  * Base/Karma Mocha Test configuration
  */
-/* global sinon:true */
 var root = window,
   mocha = root.mocha, // Off static include.
   chai = require("chai"),
-  sinon = root.sinon, // Off static include.
   sinonChai = require("sinon-chai"),
   $ = require("jquery"),
   Backbone = require("backbone"),
