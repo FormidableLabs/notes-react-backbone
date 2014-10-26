@@ -54,7 +54,13 @@ module.exports = React.createClass({
 
   // Render.
   render: function () {
-    var noteNodes = this.props.notes.map(this.addNote);
+    var notes = this.props.notes;
+
+    // [BB] Add all notes from collection, sorted old to new.
+    var noteNodes = notes.chain()
+      .sortBy(function (m) { return m.get("createdAt"); })
+      .map(this.addNote, this)
+      .value();
 
     return (/*jshint ignore:start */
       <div id="notes" className="region region-notes">
