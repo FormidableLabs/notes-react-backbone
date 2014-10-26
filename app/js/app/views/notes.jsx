@@ -16,6 +16,28 @@ var ENTER = 13;
 
 module.exports = React.createClass({
   // --------------------------------------------------------------------------
+  // Mount / Unmount
+  // --------------------------------------------------------------------------
+  // TODO: ABSTRACT OUT -- Model sync.
+  // From: https://github.com/facebook/react/blob/1be9a9e/examples/
+  //       todomvc-backbone/js/app.js#L148-L171
+  componentDidMount: function() {
+    // [BB] Add forceUpdate bindings.
+    this.props.notes.on("add remove", this.forceUpdate.bind(this, null), this);
+    this.props.notes.each(function (model) {
+      model.on("add change remove", this.forceUpdate.bind(this, null), this);
+    }, this);
+  },
+
+  componentWillUnmount: function() {
+    // [BB] Stop all listeners.
+    this.props.notes.off(null, null, this);
+    this.props.notes.forEach(function(model) {
+      model.off(null, null, this);
+    }, this);
+  },
+
+  // --------------------------------------------------------------------------
   // State
   // --------------------------------------------------------------------------
   getInitialState: function() {
@@ -39,7 +61,8 @@ module.exports = React.createClass({
   },
 
   createNote: function (ev) {
-    window.console.log("TODO HERE createNote", this.state.newNote);
+    // [BB] Create a note model.
+    this.props.notes.create({ title: this.state.newNote });
   },
 
   // --------------------------------------------------------------------------
@@ -54,10 +77,8 @@ module.exports = React.createClass({
 
   // Render.
   render: function () {
-    var notes = this.props.notes;
-
     // [BB] Add all notes from collection, sorted old to new.
-    var noteNodes = notes.chain()
+    var noteNodes = this.props.notes.chain()
       .sortBy(function (m) { return m.get("createdAt"); })
       .map(this.addNote, this)
       .value();
