@@ -10,6 +10,8 @@ Tasks
 * Webpack: New uglify options form.
 * Gulp: Switch to jsxhint.
 * Remove `app-OLD-DELETE`
+* Replace Underscore with es5-shim.
+* Remove HTML `id` attributes and use React conventions (?)
 
 
 ## Notes

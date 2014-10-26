@@ -23,6 +23,8 @@ var collection = NotesCollection.getInstance();
 // Wait until we have our initial collection from the backing
 // store before firing up the router.
 collection.once("reset", function () {
+
+  // TODO: Should wait for `componentDidMount` for history start & router start.
   Backbone.history.start();
 
   React.renderComponent(

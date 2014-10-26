@@ -8,12 +8,15 @@
 var React = require("react");
 
 module.exports = React.createClass({
-  // TODO: REMOVE.
-  TODO: function (key) {
-    var self = this;
-    return function () {
-      window.console.log("TODO " + key, self.props.note);
-    };
+
+  viewNote: function () {
+    window.console.log("TODO viewNote", this.props.note);
+  },
+  editNote: function () {
+    window.console.log("TODO editNote", this.props.note);
+  },
+  deleteNote: function () {
+    window.console.log("TODO deleteNote", this.props.note);
   },
 
   render: function () {
@@ -22,18 +25,18 @@ module.exports = React.createClass({
           className="notes-item">
         <td className="note-name">
           <div className="note-title note-view"
-               onClick={this.TODO("VIEW")}>
+               onClick={this.viewNote}>
             {this.props.note.get("title")}
           </div>
         </td>
         <td className="note-action">
           <div className="btn-group btn-group-sm pull-right">
             <button className="btn btn-default note-edit"
-                    onClick={this.TODO("EDIT")}>
+                    onClick={this.editNote}>
               <span className="glyphicon glyphicon-pencil"></span>
             </button>
             <button className="btn btn-default note-delete"
-                    onClick={this.TODO("DELETE")}>
+                    onClick={this.deleteNote}>
               <span className="glyphicon glyphicon-trash"></span>
             </button>
           </div>
