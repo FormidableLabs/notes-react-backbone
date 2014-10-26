@@ -16,7 +16,7 @@ module.exports = React.createClass({
     window.console.log("TODO editNote", this.props.note);
   },
   deleteNote: function () {
-    window.console.log("TODO deleteNote", this.props.note);
+    this.props.note.destroy(); // [BB]
   },
 
   render: function () {
