@@ -22,14 +22,14 @@ var Router = Backbone.Router.extend({
 
   // Show notes list.
   notes: function () {
-    _showPage(NotesView({
+    _showPage(new NotesView({
       notes: NotesCollection.getInstance()
     }));
   },
 
   // Common single note edit/view.
   note: function (noteId, action) {
-    console.log("NOTE", arguments, NoteView)
+    window.console.log("NOTE", noteId, action);
   }
 
 });

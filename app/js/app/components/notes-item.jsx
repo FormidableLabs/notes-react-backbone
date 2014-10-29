@@ -4,19 +4,22 @@
  *
  * A single note within a list of notes.
  */
-/*jshint unused:false */
 var React = require("react");
+var Backbone = require("backbone");
 
 module.exports = React.createClass({
 
+  // [BB] Navigation, models.
   viewNote: function () {
-    window.console.log("TODO viewNote", this.props.note);
+    var loc = ["note", this.props.note.id, "view"].join("/");
+    Backbone.history.navigate(loc, { trigger: true });
   },
   editNote: function () {
-    window.console.log("TODO editNote", this.props.note);
+    var loc = ["note", this.props.note.id, "edit"].join("/");
+    Backbone.history.navigate(loc, { trigger: true });
   },
   deleteNote: function () {
-    this.props.note.destroy(); // [BB]
+    this.props.note.destroy();
   },
 
   render: function () {
