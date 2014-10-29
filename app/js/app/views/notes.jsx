@@ -24,17 +24,11 @@ module.exports = React.createClass({
   componentDidMount: function() {
     // [BB] Add forceUpdate bindings.
     this.props.notes.on("add remove", this.forceUpdate.bind(this, null), this);
-    this.props.notes.each(function (model) {
-      model.on("add change remove", this.forceUpdate.bind(this, null), this);
-    }, this);
   },
 
   componentWillUnmount: function() {
     // [BB] Stop all listeners.
     this.props.notes.off(null, null, this);
-    this.props.notes.forEach(function(model) {
-      model.off(null, null, this);
-    }, this);
   },
 
   // --------------------------------------------------------------------------
