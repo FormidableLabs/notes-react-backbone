@@ -3,10 +3,6 @@
  * Notes View
  *
  * Displays a list of notes.
- *
- * Contains:
- * - "/app/views/notes-filter": Child view for query filter.
- * - "/app/views/notes-item": Child view for single note listing.
  */
 /*jshint unused:false */
 var React = require("react");
@@ -78,7 +74,7 @@ module.exports = React.createClass({
       .value();
 
     return (/*jshint ignore:start */
-      <div id="notes" className="region region-notes">
+      <div id="notes">
         <table id="notes-list" className="table table-curved table-hover">
           <tbody>
             <tr className="notes-new">

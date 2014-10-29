@@ -14,6 +14,10 @@ Tasks
 * Remove HTML `id` attributes and use React conventions (?)
 
 
+## Questions
+
+* Am I better off showing/hiding two DOM containers, or re-creating them in React?
+
 ## Notes
 
 * Maybe use an integration library:

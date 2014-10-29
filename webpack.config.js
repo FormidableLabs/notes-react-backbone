@@ -8,7 +8,7 @@ var webpack = require("webpack");
 module.exports = {
   cache: true,
   context: path.join(__dirname, "app"),
-  entry: "./js/app/app.jsx",
+  entry: "./js/app/app.js",
   output: {
     path: path.join(__dirname, "app/js-dist"),
     filename: "bundle.js"
