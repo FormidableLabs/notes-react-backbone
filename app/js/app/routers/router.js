@@ -1,14 +1,20 @@
 var React = require("react");
 var Backbone = require("backbone");
 var NotesView = React.createFactory(require("../components/notes.jsx"));
+var NotesNav = React.createFactory(require("../components/notes-nav.jsx"));
 var NoteView = React.createFactory(require("../components/note.jsx"));
+var NoteNav = React.createFactory(require("../components/note-nav.jsx"));
 var NotesCollection = require("../collections/notes");
-var page = document.getElementById("page");
+
+var pageEl = document.getElementById("page");
+var navEl = document.getElementById("nav-target");
 
 // Helpers
-var _showPage = function (view) {
-  React.unmountComponentAtNode(page);
-  React.render(view, page);
+var _showPage = function (view, nav) {
+  React.unmountComponentAtNode(pageEl);
+  React.unmountComponentAtNode(navEl);
+  React.render(view, pageEl);
+  React.render(nav, navEl);
 };
 
 // Router
@@ -23,9 +29,9 @@ module.exports = Backbone.Router.extend({
 
   // Show notes list.
   notes: function () {
-    _showPage(new NotesView({
-      notes: NotesCollection.getInstance()
-    }));
+    var notesView = new NotesView({ notes: NotesCollection.getInstance() });
+    var notesNav = new NotesNav();
+    _showPage(notesView, notesNav);
   },
 
   // Common single note edit/view.
@@ -38,9 +44,9 @@ module.exports = Backbone.Router.extend({
     }
 
     window.console.log("TODO USE ACTION", action);
-    _showPage(new NoteView({
-      note: model
-    }));
+    var noteView = new NoteView({ note: model });
+    var noteNav = new NoteNav();
+    _showPage(noteView, noteNav);
   }
 
 });
