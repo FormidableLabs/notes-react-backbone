@@ -12,7 +12,7 @@
     "handlebars-loader": "0.1.7",
     "jquery": "2.1.1",
     "json2": "0.4.0",
-    "jsx-loader": "0.11.2",
+    "jsx-loader": "0.12.0",
     "lodash": "2.4.1",
     "markdown": "0.5.0",
     "ps-tree": "0.0.3",

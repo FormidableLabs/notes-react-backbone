@@ -10,7 +10,7 @@ Tasks
 * Webpack: New uglify options form.
 * Gulp: Switch to jsxhint.
 * Remove `app-OLD-DELETE`
-* Replace Underscore with es5-shim.
+* Replace Underscore with es5-shim / make sure we do polyfills right.
 * Remove HTML `id` attributes and use React conventions (?)
 
 
@@ -20,6 +20,9 @@ Tasks
     * https://github.com/jhudson8/react-backbone
     * https://github.com/clayallsopp/react.backbone
     * https://github.com/magalhas/backbone-react-component
+
+* Examples:
+    * https://github.com/jhudson8/http-dictionary
 
 ## Issues
 
