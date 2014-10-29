@@ -30,7 +30,7 @@ module.exports = React.createClass({
   // State
   // --------------------------------------------------------------------------
   getInitialState: function() {
-    return { TODO: "" };
+    return { action: this.props.action };
   },
 
   // --------------------------------------------------------------------------
@@ -40,14 +40,17 @@ module.exports = React.createClass({
   // --------------------------------------------------------------------------
   // Render
   // --------------------------------------------------------------------------
+  // View view.
+  renderView: function () {
+    return (/*jshint ignore:start */
+      <div id="note-pane-view" className="pane">
+        <div id="note-pane-view-content"></div>
+      </div>
+    /*jshint ignore:end */);
+  },
 
-  // TODO: (1) View pane, (2) split up Edit pane below.
-  // <div id="note-pane-view" className="pane">
-  //   <div id="note-pane-view-content"></div>
-  // </div>
-
-  // Render.
-  render: function () {
+  // Edit view.
+  renderEdit: function () {
     return (/*jshint ignore:start */
       <div id="note">
         <div id="note-pane-edit" className="pane">
@@ -66,5 +69,11 @@ module.exports = React.createClass({
         </div>
       </div>
     /*jshint ignore:end */);
+  },
+
+  render: function () {
+    return this.state.action === "view" ?
+      this.renderView() :
+      this.renderEdit();
   }
 });
