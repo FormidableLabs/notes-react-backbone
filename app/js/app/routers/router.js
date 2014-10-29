@@ -1,6 +1,7 @@
 var React = require("react");
 var Backbone = require("backbone");
 var NotesView = React.createFactory(require("../components/notes.jsx"));
+var NoteView = React.createFactory(require("../components/note.jsx"));
 var NotesCollection = require("../collections/notes");
 var page = document.getElementById("page");
 
@@ -36,7 +37,10 @@ module.exports = Backbone.Router.extend({
       return this.navigate("", { trigger: true });
     }
 
-    window.console.log("NOTE", noteId, action, model);
+    window.console.log("TODO USE ACTION", action);
+    _showPage(new NoteView({
+      note: model
+    }));
   }
 
 });
