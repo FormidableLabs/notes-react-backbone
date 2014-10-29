@@ -8,7 +8,9 @@ var React = require("react");
 var Backbone = require("backbone");
 
 module.exports = React.createClass({
-
+  // --------------------------------------------------------------------------
+  // Events
+  // --------------------------------------------------------------------------
   // [BB] Navigation, models.
   viewNote: function () {
     var loc = ["note", this.props.note.id, "view"].join("/");
@@ -22,6 +24,9 @@ module.exports = React.createClass({
     this.props.note.destroy();
   },
 
+  // --------------------------------------------------------------------------
+  // Render
+  // --------------------------------------------------------------------------
   render: function () {
     return (/*jshint ignore:start */
       <tr id={this.props.note.id}

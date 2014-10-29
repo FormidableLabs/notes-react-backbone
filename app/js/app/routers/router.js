@@ -44,8 +44,8 @@ module.exports = Backbone.Router.extend({
     }
 
     window.console.log("TODO USE ACTION", action);
-    var noteView = new NoteView({ note: model });
-    var noteNav = new NoteNav();
+    var noteView = new NoteView({ note: model, action: action });
+    var noteNav = new NoteNav({ note: model, action: action });
     _showPage(noteView, noteNav);
   }
 
