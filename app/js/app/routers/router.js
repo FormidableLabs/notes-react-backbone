@@ -13,7 +13,7 @@ var _showPage = function (view) {
 // Router
 // ------
 // The router translates routes in to views.
-var Router = Backbone.Router.extend({
+module.exports = Backbone.Router.extend({
 
   routes: {
     "": "notes",
@@ -29,9 +29,14 @@ var Router = Backbone.Router.extend({
 
   // Common single note edit/view.
   note: function (noteId, action) {
-    window.console.log("NOTE", noteId, action);
+    // Try to find note in existing collection.
+    var model = NotesCollection.getInstance().get(noteId);
+    if (!model) {
+      // Go to home page on missing model.
+      return this.navigate("", { trigger: true });
+    }
+
+    window.console.log("NOTE", noteId, action, model);
   }
 
 });
-
-module.exports = Router;
