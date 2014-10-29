@@ -6,7 +6,8 @@
  */
 /*jshint unused:false */
 var React = require("react");
-var NotesItem = require("./notes-item.jsx");
+var NoteView = require("./note-view.jsx");
+var NoteEdit = require("./note-edit.jsx");
 
 module.exports = React.createClass({
   // --------------------------------------------------------------------------
@@ -40,40 +41,11 @@ module.exports = React.createClass({
   // --------------------------------------------------------------------------
   // Render
   // --------------------------------------------------------------------------
-  // View view.
-  renderView: function () {
-    return (/*jshint ignore:start */
-      <div id="note-pane-view" className="pane">
-        <div id="note-pane-view-content"></div>
-      </div>
-    /*jshint ignore:end */);
-  },
-
-  // Edit view.
-  renderEdit: function () {
-    return (/*jshint ignore:start */
-      <div id="note">
-        <div id="note-pane-edit" className="pane">
-          <form id="note-form-edit" role="form">
-            <div className="form-group">
-              <input id="input-title" className="form-control"
-                     type="text" placeholder="title"
-                     value={this.props.note.get("title")} />
-            </div>
-            <div className="form-group">
-              <textarea id="input-text" className="form-control"
-                        rows="15"
-                        value={this.props.note.get("text")} />
-            </div>
-          </form>
-        </div>
-      </div>
-    /*jshint ignore:end */);
-  },
-
   render: function () {
+    /*jshint ignore:start */
     return this.state.action === "view" ?
-      this.renderView() :
-      this.renderEdit();
+      (<NoteView note={this.props.note} />) :
+      (<NoteEdit note={this.props.note} />);
+    /*jshint ignore:end */
   }
 });
