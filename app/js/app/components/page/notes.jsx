@@ -6,7 +6,8 @@
  */
 /*jshint unused:false */
 var React = require("react");
-var NotesItem = require("./notes-item.jsx");
+var Base = require("./base.jsx");
+var NotesItem = require("./notes/item.jsx");
 
 var ENTER = 13;
 
@@ -74,31 +75,33 @@ module.exports = React.createClass({
       .value();
 
     return (/*jshint ignore:start */
-      <div id="notes">
-        <table id="notes-list" className="table table-curved table-hover">
-          <tbody>
-            <tr className="notes-new">
-              <td className="note-name">
-                <input className="form-control"
-                       placeholder="Write a new note."
-                       value={this.state.newNote}
-                       onKeyPress={this.enterNote}
-                       onChange={this.updateNewNote}
-                       autofocus />
-              </td>
-              <td className="note-action">
-                <button id="note-create"
-                        type="button"
-                        className="btn btn-default btn-sm pull-right"
-                        onClick={this.createNote}>
-                  <span className="glyphicon glyphicon-plus"></span>
-                </button>
-              </td>
-            </tr>
-            {noteNodes}
-          </tbody>
-        </table>
-      </div>
+      <Base>
+        <div id="notes">
+          <table id="notes-list" className="table table-curved table-hover">
+            <tbody>
+              <tr className="notes-new">
+                <td className="note-name">
+                  <input className="form-control"
+                         placeholder="Write a new note."
+                         value={this.state.newNote}
+                         onKeyPress={this.enterNote}
+                         onChange={this.updateNewNote}
+                         autofocus />
+                </td>
+                <td className="note-action">
+                  <button id="note-create"
+                          type="button"
+                          className="btn btn-default btn-sm pull-right"
+                          onClick={this.createNote}>
+                    <span className="glyphicon glyphicon-plus"></span>
+                  </button>
+                </td>
+              </tr>
+              {noteNodes}
+            </tbody>
+          </table>
+        </div>
+      </Base>
     /*jshint ignore:end */);
   }
 });

@@ -4,12 +4,16 @@
  */
  /*jshint unused:false */
 var React = require("react");
+var NotesNav = require("./nav/notes.jsx");
 var NotesPage = require("./page/notes.jsx");
 
 module.exports = React.createClass({
   render: function () {
-    /*jshint ignore:start */
-    return (<NotesPage notes={this.props.notes} />);
-    /*jshint ignore:end */
+    return (/*jshint ignore:start */
+      <div>
+        <NotesNav notes={this.props.notes} />
+        <NotesPage notes={this.props.notes} />
+      </div>
+    /*jshint ignore:end */);
   }
 });

@@ -6,8 +6,9 @@
  */
 /*jshint unused:false */
 var React = require("react");
-var NoteView = require("./note-view.jsx");
-var NoteEdit = require("./note-edit.jsx");
+var Base = require("./base.jsx");
+var NoteView = require("./note/view.jsx");
+var NoteEdit = require("./note/edit.jsx");
 
 module.exports = React.createClass({
   // --------------------------------------------------------------------------
@@ -42,10 +43,13 @@ module.exports = React.createClass({
   // Render
   // --------------------------------------------------------------------------
   render: function () {
-    /*jshint ignore:start */
-    return this.state.action === "view" ?
-      (<NoteView note={this.props.note} />) :
-      (<NoteEdit note={this.props.note} />);
-    /*jshint ignore:end */
+
+    return (/*jshint ignore:start */
+      <Base>
+        {this.state.action === "view" ?
+          <NoteView note={this.props.note} /> :
+          <NoteEdit note={this.props.note} />}
+      </Base>
+    /*jshint ignore:end */);
   }
 });

@@ -4,12 +4,12 @@ var NotesView = React.createFactory(require("../components/notes.jsx"));
 var NoteView = React.createFactory(require("../components/note.jsx"));
 var NotesCollection = require("../collections/notes");
 
-var pageEl = document.getElementById("page");
+var rootEl = document.getElementById("content");
 
 // Helpers
 var _showPage = function (view) {
-  React.unmountComponentAtNode(pageEl);
-  React.render(view, pageEl);
+  React.unmountComponentAtNode(rootEl);
+  React.render(view, rootEl);
 };
 
 // Router
