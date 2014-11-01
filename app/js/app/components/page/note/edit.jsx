@@ -6,6 +6,9 @@ var React = require("react");
 
 module.exports = React.createClass({
 
+  // --------------------------------------------------------------------------
+  // State
+  // --------------------------------------------------------------------------
   getInitialState: function() {
     return {
       title: this.props.note.get("title"),
@@ -13,6 +16,9 @@ module.exports = React.createClass({
     };
   },
 
+  // --------------------------------------------------------------------------
+  // Events
+  // --------------------------------------------------------------------------
   updateTitle: function (ev) {
     this.setState({ title: ev.target.value });
   },
@@ -32,6 +38,9 @@ module.exports = React.createClass({
     }
   },
 
+  // --------------------------------------------------------------------------
+  // Render
+  // --------------------------------------------------------------------------
   render: function () {
     return (/*jshint ignore:start */
       <div id="note">
