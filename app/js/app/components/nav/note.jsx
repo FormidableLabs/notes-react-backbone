@@ -11,24 +11,17 @@ var Base = require("./base.jsx");
 
 module.exports = React.createClass({
   // --------------------------------------------------------------------------
-  // State
-  // --------------------------------------------------------------------------
-  getInitialState: function() {
-    return { action: this.props.action };
-  },
-
-  // --------------------------------------------------------------------------
   // Events
   // --------------------------------------------------------------------------
   // [BB] Navigation, models.
   // TODO: Consider combining with notes view.
   viewNote: function (ev) {
     ev.preventDefault();
-    this.setState({ action: "view" });
+    this.props.handleActionChange("view");
   },
   editNote: function (ev) {
     ev.preventDefault();
-    this.setState({ action: "edit" });
+    this.props.handleActionChange("edit");
   },
   deleteNote: function (ev) {
     ev.preventDefault();
@@ -43,13 +36,13 @@ module.exports = React.createClass({
     return (/*jshint ignore:start */
       <Base>
         <ul id="note-nav" className="nav navbar-nav">
-          <li className={"note-view" + (this.state.action === "view" ? " active" : "")}>
+          <li className={"note-view" + (this.props.action === "view" ? " active" : "")}>
             <a href="#" onClick={this.viewNote}>
               <span className="glyphicon glyphicon-file"></span>
               <span className="hidden-phone-portrait">View</span>
             </a>
           </li>
-          <li className={"note-edit" + (this.state.action === "edit" ? " active" : "")}>
+          <li className={"note-edit" + (this.props.action === "edit" ? " active" : "")}>
             <a href="#" onClick={this.editNote}>
               <span className="glyphicon glyphicon-pencil"></span>
               <span className="hidden-phone-portrait">Edit</span>

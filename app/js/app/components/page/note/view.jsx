@@ -8,7 +8,7 @@ module.exports = React.createClass({
   render: function () {
     return (/*jshint ignore:start */
       <div id="note-pane-view" className="pane">
-        <div id="note-pane-view-content"></div>
+        <div id="note-pane-view-content">TODO VIEW YO</div>
       </div>
     /*jshint ignore:end */);
   }

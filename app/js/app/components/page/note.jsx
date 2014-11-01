@@ -28,27 +28,13 @@ module.exports = React.createClass({
     this.props.note.off(null, null, this);
   },
 
-  // --------------------------------------------------------------------------
-  // State
-  // --------------------------------------------------------------------------
-  getInitialState: function() {
-    return { action: this.props.action };
-  },
-
-  // --------------------------------------------------------------------------
-  // Events
-  // --------------------------------------------------------------------------
-
-  // --------------------------------------------------------------------------
-  // Render
-  // --------------------------------------------------------------------------
   render: function () {
 
     return (/*jshint ignore:start */
       <Base>
-        {this.state.action === "view" ?
-          <NoteView note={this.props.note} /> :
-          <NoteEdit note={this.props.note} />}
+      {this.props.action === "view" ?
+        <NoteView note={this.props.note} /> :
+        <NoteEdit note={this.props.note} />}
       </Base>
     /*jshint ignore:end */);
   }

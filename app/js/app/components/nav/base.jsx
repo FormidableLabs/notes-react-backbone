@@ -9,7 +9,8 @@ module.exports = React.createClass({
     return (/*jshint ignore:start */
       <nav className="navbar navbar-default" role="navigation">
         <div className="navbar-header">
-          <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#nav-target">
+          <button type="button" className="navbar-toggle"
+                  data-toggle="collapse" data-target="#nav-target">
             <span className="sr-only">Toggle navigation</span>
             <span className="icon-bar"></span>
             <span className="icon-bar"></span>
