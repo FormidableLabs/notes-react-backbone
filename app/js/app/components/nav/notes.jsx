@@ -17,7 +17,6 @@ module.exports = React.createClass({
   // Render
   // --------------------------------------------------------------------------
   render: function () {
-    window.console.log("TODO HERE ACTION", this.props.action);
     return (/*jshint ignore:start */
       <Base>
         <form className="nav navbar-nav navbar-right navbar-form-nonresp navbar-search"

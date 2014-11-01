@@ -36,7 +36,6 @@ module.exports = Backbone.Router.extend({
       return this.navigate("", { trigger: true });
     }
 
-    window.console.log("TODO USE ACTION", action);
     _showPage(new NoteView({ note: model, action: action }));
   }
 
