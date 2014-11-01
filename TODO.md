@@ -8,11 +8,14 @@ Tasks
 * Make sure tests pass.
 * Implement / switch LS/no-server-side for `gh-pages` vs normal.
 * Webpack: New uglify options form.
+
 * Gulp: Switch to jsxhint.
 * Remove `app-OLD-DELETE`
 * Replace Underscore with es5-shim / make sure we do polyfills right.
 * Remove HTML `id` attributes and use React conventions (?)
 
+* Hone down static serve to just needed stuff (e.g., no "node_modules")
+* Do a webpack build for all of bootstrap (css, etc. too).
 
 ## Questions
 
