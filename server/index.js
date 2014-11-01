@@ -33,12 +33,12 @@ var _errOrData = function (res, dataOverride) {
   };
 };
 
-app.get("/notes", function (req, res) {
+app.get("/api/notes", function (req, res) {
   db.prepare("select * from notes")
     .all(_errOrData(res));
 });
 
-app.post("/notes", function (req, res) {
+app.post("/api/notes", function (req, res) {
   var title = req.body.title || "",
     text = req.body.text || "";
 
@@ -47,7 +47,7 @@ app.post("/notes", function (req, res) {
     .get(_errOrData(res));
 });
 
-app.put("/notes/:id", function (req, res) {
+app.put("/api/notes/:id", function (req, res) {
   var title = req.body.title,
     text = req.body.text,
     id = req.params.id;
@@ -57,7 +57,7 @@ app.put("/notes/:id", function (req, res) {
     .get(_errOrData(res));
 });
 
-app["delete"]("/notes/:id", function (req, res) {
+app["delete"]("/api/notes/:id", function (req, res) {
   db.run("delete from notes where id=?", req.params.id, _errOrData(res, {}));
 });
 
