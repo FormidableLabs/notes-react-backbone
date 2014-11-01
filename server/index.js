@@ -1,4 +1,5 @@
 var express = require("express");
+var exphbs = require("express-handlebars");
 var bodyParser = require("body-parser");
 var sql = require("sqlite3");
 
@@ -11,14 +12,30 @@ var PORT = process.env.PORT || 3000;
 // ----------------------------------------------------------------------------
 // Setup, Static Routes
 // ----------------------------------------------------------------------------
-app.use("/js-dist/*.map", function (req, res) {
+app.use(bodyParser());
+app.engine(".hbs", exphbs({
+  extname: ".hbs"
+}));
+app.set("view engine", ".hbs");
+app.set("views", __dirname + "/../templates");
+
+// ----------------------------------------------------------------------------
+// Static Routes
+// ----------------------------------------------------------------------------
+app.use("/app/js-dist/*.map", function (req, res) {
   res.send(404, "404"); // Prevent sourcemap serving.
 });
-app.use("/", express["static"]("app"));
-app.use("/app", express["static"]("app"));
-app.use("/test", express["static"]("test"));
-app.use("/node_modules", express["static"]("node_modules"));
-app.use(bodyParser());
+app.use("/app/js-dist", express["static"]("app/js-dist"));
+app.use("/bootstrap", express["static"]("node_modules/bootstrap/dist"));
+app.use("/css", express["static"]("app/css"));
+
+// ----------------------------------------------------------------------------
+// Dynamic Routes
+// ----------------------------------------------------------------------------
+app.get("/", function (req, res) {
+  console.log(req.path);
+  res.render("index", { layout: false });
+});
 
 // ----------------------------------------------------------------------------
 // API
