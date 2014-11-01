@@ -11,9 +11,6 @@ var NoteView = require("./note/view.jsx");
 var NoteEdit = require("./note/edit.jsx");
 
 module.exports = React.createClass({
-  // --------------------------------------------------------------------------
-  // Mount / Unmount
-  // --------------------------------------------------------------------------
   // TODO: ABSTRACT OUT -- Model sync.
   // From: https://github.com/facebook/react/blob/1be9a9e/examples/
   //       todomvc-backbone/js/app.js#L148-L171
@@ -29,7 +26,6 @@ module.exports = React.createClass({
   },
 
   render: function () {
-
     return (/*jshint ignore:start */
       <Base>
       {this.props.action === "view" ?

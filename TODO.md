@@ -3,23 +3,24 @@ Tasks
 
 ## Current
 
-* Add documentation to README.md.
 * Investigate / implement server-side rendering.
-* Make sure tests pass.
-* Implement / switch LS/no-server-side for `gh-pages` vs normal.
+
+* Do a webpack build for all of bootstrap (css, etc. too).
+* Hone down static serve to just needed stuff (e.g., no "node_modules")
 * Webpack: New uglify options form.
 
+
+* Add documentation to README.md.
+* Make sure tests pass.
+
 * Gulp: Switch to jsxhint.
-* Remove `app-OLD-DELETE`
 * Replace Underscore with es5-shim / make sure we do polyfills right.
+    * E.g., I have lots of `.bind()` around.
 * Remove HTML `id` attributes and use React conventions (?)
 
-* Hone down static serve to just needed stuff (e.g., no "node_modules")
-* Do a webpack build for all of bootstrap (css, etc. too).
+* Implement / switch LS/no-server-side for `gh-pages` vs normal.
+* Switch to ampersand components.
 
-## Questions
-
-* Am I better off showing/hiding two DOM containers, or re-creating them in React?
 
 ## Notes
 

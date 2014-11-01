@@ -10,8 +10,19 @@ var Base = require("./base.jsx");
 
 module.exports = React.createClass({
   // --------------------------------------------------------------------------
-  // Events
+  // State
   // --------------------------------------------------------------------------
+  getInitialState: function() {
+    return { filter: "" };
+  },
+
+  // Update filter value on changes.
+  updateFilter: function (ev) {
+    ev.preventDefault();
+    this.setState({ filter: ev.target.value }, function () {
+      this.props.onUpdateFilter(this.state.filter);
+    }.bind(this));
+  },
 
   // --------------------------------------------------------------------------
   // Render
@@ -23,6 +34,7 @@ module.exports = React.createClass({
               role="search">
           <div className="form-group">
             <input type="text" className="search-query form-control"
+                   onChange={this.updateFilter}
                    placeholder="Filter" />
           </div>
         </form>

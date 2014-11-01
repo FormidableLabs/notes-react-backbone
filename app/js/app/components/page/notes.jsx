@@ -56,6 +56,18 @@ module.exports = React.createClass({
     this.props.notes.create({ title: this.state.newNote });
   },
 
+  // Return true if filter token occurs in value.
+  isMatch: function (filter, value) {
+    // Empty filter matches everything.
+    if (!filter) { return true; }
+
+    // Find lower-cased matches.
+    value = value.toLowerCase();
+    filter = filter.toLowerCase();
+
+    return value.indexOf(filter) > -1;
+  },
+
   // --------------------------------------------------------------------------
   // Render
   // --------------------------------------------------------------------------
@@ -70,6 +82,9 @@ module.exports = React.createClass({
   render: function () {
     // [BB] Add all notes from collection, sorted old to new.
     var noteNodes = this.props.notes.chain()
+      .filter(function (m) {
+        return this.isMatch(this.props.filter, m.get("title"));
+      }, this)
       .sortBy(function (m) { return m.get("createdAt"); })
       .map(this.addNote, this)
       .value();
