@@ -9,6 +9,14 @@ var React = require("react");
 var Backbone = require("backbone");
 var Base = require("./base.jsx");
 
+var _updateLoc = function (action) {
+  var oldLoc = Backbone.history.fragment;
+  var newLoc = oldLoc.replace(/\/[^\/]*?$/, "/" + action);
+  if (oldLoc !== newLoc) {
+    Backbone.history.navigate(newLoc, { replace: true, trigger: false });
+  }
+};
+
 module.exports = React.createClass({
   // --------------------------------------------------------------------------
   // Events
@@ -18,10 +26,12 @@ module.exports = React.createClass({
   viewNote: function (ev) {
     ev.preventDefault();
     this.props.handleActionChange("view");
+    _updateLoc("view");
   },
   editNote: function (ev) {
     ev.preventDefault();
     this.props.handleActionChange("edit");
+    _updateLoc("edit");
   },
   deleteNote: function (ev) {
     ev.preventDefault();
