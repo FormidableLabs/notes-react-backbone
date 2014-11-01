@@ -6,15 +6,10 @@ var React = require("react");
 
 module.exports = React.createClass({
 
-  componentDidMount: function() {
-    var note = this.props.note;
-    note.listenTo(note, "change", function () { note.save(); }); // [BB]
-  },
-
   getInitialState: function() {
     return {
-      title: this.props.note.title,
-      text: this.props.note.text
+      title: this.props.note.get("title"),
+      text: this.props.note.get("text")
     };
   },
 
@@ -25,10 +20,16 @@ module.exports = React.createClass({
     this.setState({ text: ev.target.value });
   },
   saveNote: function () {
-    this.props.note.set({
+    var note = this.props.note;
+    note.set({
       title: this.state.title,
       text: this.state.text
     });
+
+    // Manually determine if should save.
+    if (note.changedAttributes()) {
+      note.save();
+    }
   },
 
   render: function () {
