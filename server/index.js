@@ -86,6 +86,11 @@ app["delete"]("/api/notes/:id", function (req, res) {
 // Dynamic Routes
 // ----------------------------------------------------------------------------
 app.get("/", function (req, res) {
+  if (req.query.__ss === "false") {
+    // No server-side render.
+    return res.render("index", { layout: false });
+  }
+
   _getAllNotes(function (err, data) {
     if (err) {
       return res.status(500).json(err.message || err.toString() || "error");
