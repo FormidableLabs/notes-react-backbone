@@ -1,4 +1,4 @@
-// Patch require
+// Patch require.
 require("node-jsx").install({ extension: ".jsx" });
 
 // Server
@@ -14,9 +14,9 @@ var PORT = process.env.PORT || 3000;
 
 // Client
 var React = require("react");
-var Backbone = require("backbone");
 var NotesView = React.createFactory(
   require("../app/js/app/components/notes.jsx"));
+var NotesCollection = require("../app/js/app/collections/notes");
 
 // ----------------------------------------------------------------------------
 // Setup, Static Routes
@@ -39,29 +39,6 @@ app.use("/bootstrap", express["static"]("node_modules/bootstrap/dist"));
 app.use("/css", express["static"]("app/css"));
 
 // ----------------------------------------------------------------------------
-// Dynamic Routes
-// ----------------------------------------------------------------------------
-app.get("/", function (req, res) {
-  // Get all notes.
-  db.prepare("select * from notes").all(function (err, data) {
-    if (err) {
-      return res.status(500).json(err.message || err.toString() || "error");
-    }
-
-    // TODO: USE REAL NOTES.
-    var notes = new NotesView({ notes: new Backbone.Collection() });
-    var content = React.renderToString(notes);
-
-    // Render with bootstrapped data.
-    res.render("index", {
-      layout: false,
-      initialData: data && JSON.stringify(data),
-      content: content
-    });
-  });
-});
-
-// ----------------------------------------------------------------------------
 // API
 // ----------------------------------------------------------------------------
 var _errOrData = function (res, dataOverride) {
@@ -74,9 +51,12 @@ var _errOrData = function (res, dataOverride) {
   };
 };
 
+var _getAllNotes = function (cb) {
+  db.prepare("select * from notes").all(cb);
+};
+
 app.get("/api/notes", function (req, res) {
-  db.prepare("select * from notes")
-    .all(_errOrData(res));
+  _getAllNotes(_errOrData(res));
 });
 
 app.post("/api/notes", function (req, res) {
@@ -100,6 +80,29 @@ app.put("/api/notes/:id", function (req, res) {
 
 app["delete"]("/api/notes/:id", function (req, res) {
   db.run("delete from notes where id=?", req.params.id, _errOrData(res, {}));
+});
+
+// ----------------------------------------------------------------------------
+// Dynamic Routes
+// ----------------------------------------------------------------------------
+app.get("/", function (req, res) {
+  _getAllNotes(function (err, data) {
+    if (err) {
+      return res.status(500).json(err.message || err.toString() || "error");
+    }
+
+    // New collection from scratch for data for concurrency ease.
+    var notesCol = new NotesCollection(data);
+    var notes = new NotesView({ notes: notesCol });
+    var content = React.renderToString(notes);
+
+    // Render with bootstrapped data.
+    res.render("index", {
+      layout: false,
+      initialData: notesCol.toJSON(),
+      content: content
+    });
+  });
 });
 
 // ----------------------------------------------------------------------------

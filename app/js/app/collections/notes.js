@@ -1,5 +1,5 @@
 // Notes Collection
-var _ = require("underscore");
+var _ = require("lodash/dist/lodash.underscore");
 var Backbone = require("backbone");
 
 var NoteModel = require("../models/note");
