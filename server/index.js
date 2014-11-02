@@ -110,6 +110,15 @@ app.get("/", function (req, res) {
   });
 });
 
+app.get("/note/:id/:action", function (req, res) {
+  if (req.query.__ss === "false") {
+    // No server-side render.
+    return res.render("index", { layout: false });
+  }
+
+  return res.render("index", { layout: false });
+});
+
 // ----------------------------------------------------------------------------
 // Bootstrap
 // ----------------------------------------------------------------------------
