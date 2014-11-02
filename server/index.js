@@ -33,7 +33,6 @@ app.use("/css", express["static"]("app/css"));
 // Dynamic Routes
 // ----------------------------------------------------------------------------
 app.get("/", function (req, res) {
-  console.log(req.path);
   res.render("index", { layout: false });
 });
 

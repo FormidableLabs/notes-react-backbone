@@ -3,8 +3,14 @@
  * Base nav component.
  */
 var React = require("react");
+var Backbone = require("backbone");
 
 module.exports = React.createClass({
+  goHome: function (ev) {
+    ev.preventDefault();
+    Backbone.history.navigate("", { trigger: true });
+  },
+
   render: function () {
     return (/*jshint ignore:start */
       <nav className="navbar navbar-default" role="navigation">
@@ -16,7 +22,7 @@ module.exports = React.createClass({
             <span className="icon-bar"></span>
             <span className="icon-bar"></span>
           </button>
-          <a className="navbar-brand" href="#">Notes</a>
+          <a className="navbar-brand" href="/" onClick={this.goHome}>Notes</a>
         </div>
 
         <div className="collapse navbar-collapse" id="nav-target">
