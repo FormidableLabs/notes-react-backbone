@@ -85,8 +85,11 @@ app["delete"]("/api/notes/:id", function (req, res) {
 // ----------------------------------------------------------------------------
 // Dynamic Routes
 // ----------------------------------------------------------------------------
+// Common query params:
+// * `__mode`: `noss` for "no server side html", `nojs` for "no client side".
+
 app.get("/", function (req, res) {
-  if (req.query.__ss === "false") {
+  if (req.query.__mode === "noss") {
     // No server-side render.
     return res.render("index", { layout: false });
   }
@@ -104,6 +107,7 @@ app.get("/", function (req, res) {
     // Render with bootstrapped data.
     res.render("index", {
       layout: false,
+      noJs: req.query.__mode === "nojs",
       initialData: JSON.stringify(notesCol.toJSON()),
       content: content
     });
@@ -111,7 +115,7 @@ app.get("/", function (req, res) {
 });
 
 app.get("/note/:id/:action", function (req, res) {
-  if (req.query.__ss === "false") {
+  if (req.query.__mode === "noss") {
     // No server-side render.
     return res.render("index", { layout: false });
   }

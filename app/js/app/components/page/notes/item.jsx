@@ -12,15 +12,18 @@ module.exports = React.createClass({
   // Events
   // --------------------------------------------------------------------------
   // [BB] Navigation, models.
-  viewNote: function () {
-    var loc = ["note", this.props.note.id, "view"].join("/");
-    Backbone.history.navigate(loc, { trigger: true });
+  viewNote: function (ev) {
+    ev.stopPropagation();
+    Backbone.history.navigate(
+      "note/" + this.props.note.id + "/view", { trigger: true });
   },
-  editNote: function () {
-    var loc = ["note", this.props.note.id, "edit"].join("/");
-    Backbone.history.navigate(loc, { trigger: true });
+  editNote: function (ev) {
+    ev.stopPropagation();
+    Backbone.history.navigate(
+      "note/" + this.props.note.id + "/edit", { trigger: true });
   },
-  deleteNote: function () {
+  deleteNote: function (ev) {
+    ev.stopPropagation();
     this.props.note.destroy();
   },
 
@@ -32,10 +35,11 @@ module.exports = React.createClass({
       <tr id={this.props.note.id}
           className="notes-item">
         <td className="note-name">
-          <div className="note-title note-view"
-               onClick={this.viewNote}>
+          <a className="note-title note-view"
+             href={"/note/" + this.props.note.id + "/view"}
+             onClick={this.viewNote}>
             {this.props.note.get("title")}
-          </div>
+          </a>
         </td>
         <td className="note-action">
           <div className="btn-group btn-group-sm pull-right">
