@@ -14,7 +14,6 @@ module.exports = React.createClass({
   // [BB] Navigation, models.
   viewNote: function (ev) {
     ev.preventDefault();
-    ev.stopPropagation();
     Backbone.history.navigate(
       "note/" + this.props.note.id + "/view", { trigger: true });
   },
