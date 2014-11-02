@@ -13,8 +13,6 @@ var _showPage = function (view) {
 };
 
 // Router
-// ------
-// The router translates routes in to views.
 module.exports = Backbone.Router.extend({
 
   routes: {

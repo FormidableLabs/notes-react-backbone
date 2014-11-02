@@ -33,7 +33,19 @@ app.use("/css", express["static"]("app/css"));
 // Dynamic Routes
 // ----------------------------------------------------------------------------
 app.get("/", function (req, res) {
-  res.render("index", { layout: false });
+  // Get all notes.
+  db.prepare("select * from notes").all(function (err, data) {
+    if (err) {
+      return res.status(500).json(err.message || err.toString() || "error");
+    }
+
+    // Render with bootstrapped data.
+    res.render("index", {
+      layout: false,
+      initialData: data && JSON.stringify(data),
+      content: "<h1>TODO CONTENT</h1>"
+    });
+  });
 });
 
 // ----------------------------------------------------------------------------
