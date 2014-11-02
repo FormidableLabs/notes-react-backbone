@@ -99,7 +99,7 @@ app.get("/", function (req, res) {
     // Render with bootstrapped data.
     res.render("index", {
       layout: false,
-      initialData: notesCol.toJSON(),
+      initialData: JSON.stringify(notesCol.toJSON()),
       content: content
     });
   });
