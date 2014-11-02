@@ -3,16 +3,16 @@
  * Entry point.
  */
 /*jshint unused:false */
+// Polyfill JSON.
+require("json2");
+
 var $ = require("jquery");
 var Backbone = require("backbone");
-var React = require("react");
-
-// jQuery: Backbone needs explicit set.
 Backbone.$ = $;
-
-// Side-effect: Add in bootstrap.js (uses `window.jQuery` from config).
+// Import bootstrap.
 require("bootstrap/dist/js/bootstrap");
 
+var React = require("react");
 var NotesCollection = require("./collections/notes");
 var Router = require("./routers/router");
 var collection = NotesCollection.getInstance();
