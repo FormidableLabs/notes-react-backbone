@@ -12,11 +12,12 @@ Tasks
 
 * Add documentation to README.md.
 * Make sure tests pass.
-
 * Gulp: Switch to jsxhint.
+
 * Replace Underscore with es5-shim / make sure we do polyfills right.
     * E.g., I have lots of `.bind()` around.
 * Remove HTML `id` attributes and use React conventions (?)
+* Remove jQuery? (Go for ie8 compat).
 
 * Implement / switch LS/no-server-side for `gh-pages` vs normal.
 * Switch to ampersand components.
