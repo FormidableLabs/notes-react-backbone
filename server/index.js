@@ -1,3 +1,7 @@
+// Patch require
+require("node-jsx").install({ extension: ".jsx" });
+
+// Server
 var express = require("express");
 var exphbs = require("express-handlebars");
 var bodyParser = require("body-parser");
@@ -5,9 +9,14 @@ var sql = require("sqlite3");
 
 var app = express();
 var db = null;
-
 var DB_PATH = __dirname + "/notes.sqlite";
 var PORT = process.env.PORT || 3000;
+
+// Client
+var React = require("react");
+var Backbone = require("backbone");
+var NotesView = React.createFactory(
+  require("../app/js/app/components/notes.jsx"));
 
 // ----------------------------------------------------------------------------
 // Setup, Static Routes
@@ -39,11 +48,15 @@ app.get("/", function (req, res) {
       return res.status(500).json(err.message || err.toString() || "error");
     }
 
+    // TODO: USE REAL NOTES.
+    var notes = new NotesView({ notes: new Backbone.Collection() });
+    var content = React.renderToString(notes);
+
     // Render with bootstrapped data.
     res.render("index", {
       layout: false,
       initialData: data && JSON.stringify(data),
-      content: "<h1>TODO CONTENT</h1>"
+      content: content
     });
   });
 });
