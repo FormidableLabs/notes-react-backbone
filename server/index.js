@@ -15,6 +15,7 @@ var PORT = process.env.PORT || 3000;
 // Client
 var React = require("react");
 var NotesView = React.createFactory(require("../client/components/notes.jsx"));
+var NoteView = React.createFactory(require("../client/components/note.jsx"));
 var NotesCollection = require("../client/collections/notes");
 
 // ----------------------------------------------------------------------------
@@ -95,13 +96,13 @@ app.get("/", function (req, res) {
 
   _getAllNotes(function (err, data) {
     if (err) {
-      return res.status(500).json(err.message || err.toString() || "error");
+      return res.status(500).send(err.message || err.toString() || "error");
     }
 
     // New collection from scratch for data for concurrency ease.
     var notesCol = new NotesCollection(data);
-    var notes = new NotesView({ notes: notesCol });
-    var content = React.renderToString(notes);
+    var notesView = new NotesView({ notes: notesCol });
+    var content = React.renderToString(notesView);
 
     // Render with bootstrapped data.
     res.render("index", {
@@ -119,7 +120,33 @@ app.get("/note/:id/:action", function (req, res) {
     return res.render("index", { layout: false });
   }
 
-  return res.render("index", { layout: false });
+  _getAllNotes(function (err, data) {
+    if (err) {
+      return res.status(500).send(err.message || err.toString() || "error");
+    }
+
+    // New collection from scratch for data for concurrency ease.
+    var notesCol = new NotesCollection(data);
+    var noteModel = notesCol.get(req.params.id);
+    if (!noteModel) {
+      // Go to home page on missing note model.
+      return res.redirect("/");
+    }
+
+    var noteView = new NoteView({
+      note: noteModel,
+      action: req.params.action
+    });
+    var content = React.renderToString(noteView);
+
+    // Render with bootstrapped data.
+    res.render("index", {
+      layout: false,
+      noJs: req.query.__mode === "nojs",
+      initialData: JSON.stringify(notesCol.toJSON()),
+      content: content
+    });
+  });
 });
 
 // ----------------------------------------------------------------------------

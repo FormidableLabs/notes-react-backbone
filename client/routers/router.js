@@ -28,13 +28,13 @@ module.exports = Backbone.Router.extend({
   // Common single note edit/view.
   note: function (noteId, action) {
     // Try to find note in existing collection.
-    var model = NotesCollection.getInstance().get(noteId);
-    if (!model) {
-      // Go to home page on missing model.
+    var noteModel = NotesCollection.getInstance().get(noteId);
+    if (!noteModel) {
+      // Go to home page on missing note model.
       return this.navigate("", { trigger: true });
     }
 
-    _showPage(new NoteView({ note: model, action: action }));
+    _showPage(new NoteView({ note: noteModel, action: action }));
   }
 
 });
