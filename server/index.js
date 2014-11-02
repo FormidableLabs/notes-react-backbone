@@ -14,9 +14,8 @@ var PORT = process.env.PORT || 3000;
 
 // Client
 var React = require("react");
-var NotesView = React.createFactory(
-  require("../app/js/app/components/notes.jsx"));
-var NotesCollection = require("../app/js/app/collections/notes");
+var NotesView = React.createFactory(require("../client/components/notes.jsx"));
+var NotesCollection = require("../client/collections/notes");
 
 // ----------------------------------------------------------------------------
 // Setup, Static Routes

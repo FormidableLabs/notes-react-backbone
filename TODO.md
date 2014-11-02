@@ -9,10 +9,9 @@ Tasks
 * Hone down static serve to just needed stuff (e.g., no "node_modules")
 * Webpack: New uglify options form.
 
-
 * Add documentation to README.md.
 * Make sure tests pass.
-* Gulp: Switch to jsxhint.
+* Gulp: Switch to jsxhint or maybe eslint?
 
 * Replace Underscore with es5-shim / make sure we do polyfills right.
     * E.g., I have lots of `.bind()` around.
@@ -21,7 +20,6 @@ Tasks
 
 * Implement / switch LS/no-server-side for `gh-pages` vs normal.
 * Switch to ampersand components.
-
 
 ## Notes
 

@@ -31,8 +31,7 @@ var _jsonCfg = function (name) {
 gulp.task("jshint:client", function () {
   gulp
     .src([
-      "app/js/*.js",
-      "app/js/app/**/*.{js,jsx}"
+      "client/**/*.{js,jsx}"
     ])
     .pipe(jshint(_jsonCfg(".jshint-frontend.json")))
     .pipe(jshint.reporter("default"))
