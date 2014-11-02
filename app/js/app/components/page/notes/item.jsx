@@ -13,17 +13,16 @@ module.exports = React.createClass({
   // --------------------------------------------------------------------------
   // [BB] Navigation, models.
   viewNote: function (ev) {
+    ev.preventDefault();
     ev.stopPropagation();
     Backbone.history.navigate(
       "note/" + this.props.note.id + "/view", { trigger: true });
   },
-  editNote: function (ev) {
-    ev.stopPropagation();
+  editNote: function () {
     Backbone.history.navigate(
       "note/" + this.props.note.id + "/edit", { trigger: true });
   },
-  deleteNote: function (ev) {
-    ev.stopPropagation();
+  deleteNote: function () {
     this.props.note.destroy();
   },
 
