@@ -1,6 +1,8 @@
 Notes - React
 =============
 
+[![Build Status][trav_img]][trav_site]
+
 A version of Notes written using [React][react] and [CommonJS][cjs], built with
 [Webpack][webpack].
 
@@ -84,7 +86,9 @@ or DOM `id` property off something like a Backbone Model `cid`, which can
 vary across client / server side, instead of the more reliable, consistent
 `id` property.
 
-
+[trav]: https://travis-ci.org/
+[trav_img]: https://api.travis-ci.org/FormidableLabs/notes-react.svg
+[trav_site]: https://travis-ci.org/FormidableLabs/notes-react
 [react]: http://facebook.github.io/react/
 [cjs]: http://wiki.commonjs.org/wiki/CommonJS
 [webpack]: http://webpack.github.io/
