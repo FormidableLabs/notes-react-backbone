@@ -4,6 +4,7 @@
  */
 /*jshint unused:false */
 var Backbone = require("backbone");
+Backbone.$ = require("jquery");
 var React = require("react");
 var NotesCollection = require("./collections/notes");
 var Router = require("./routers/router");

@@ -3,6 +3,7 @@ require("node-jsx").install({ extension: ".jsx" });
 
 // Server
 var express = require("express");
+var compress = require("compression");
 var exphbs = require("express-handlebars");
 var bodyParser = require("body-parser");
 var sql = require("sqlite3");
@@ -21,6 +22,7 @@ var NotesCollection = require("../client/collections/notes");
 // ----------------------------------------------------------------------------
 // Setup, Static Routes
 // ----------------------------------------------------------------------------
+app.use(compress());
 app.use(bodyParser());
 app.engine(".hbs", exphbs({ extname: ".hbs" }));
 app.set("view engine", ".hbs");

@@ -15,7 +15,9 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.jsx$/, loader: "jsx-loader" }
+      { test: /\.jsx$/, loader: "jsx-loader" },
+      // Backbone somehow hit's the AMD code path instead of CommonJS one.
+      { test: /backbone\.js$/, loader: "imports?define=>false" }
     ]
   },
   resolve: {

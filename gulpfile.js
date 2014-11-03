@@ -150,5 +150,6 @@ gulp.task("server:sources", function () {
 // Aggregations
 // ----------------------------------------------------------------------------
 gulp.task("dev",      ["build:dev", "watch", "server", "server:sources"]);
+gulp.task("prod",     ["build:prod", "server", "server:sources"]);
 gulp.task("build",    ["build:prod"]);
 gulp.task("default",  ["build:dev", "check"]);

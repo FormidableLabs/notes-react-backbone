@@ -20,7 +20,7 @@ React. The app uses:
 Notably, the app does _not_ include:
 
 * Bootstrap JS
-* jQuery
+* jQuery (Well, we _don't_ want to include it, but BB needs it for pushstate).
 
 Instead relying on React to mostly take care of DOM work with a little bit
 of VanillaJS.
