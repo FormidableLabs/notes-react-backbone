@@ -3,10 +3,7 @@
  * Entry point.
  */
 /*jshint unused:false */
-var $ = require("jquery");
 var Backbone = require("backbone");
-Backbone.$ = $;
-
 var React = require("react");
 var NotesCollection = require("./collections/notes");
 var Router = require("./routers/router");
@@ -28,10 +25,13 @@ var _startApp = function () {
 // Bootstrap / Initialization
 // ----------------------------------------------------------------------------
 // Initial data from page.
+var initialDataEl = document.getElementById("initial-data");
 var initialData;
-try {
-  initialData = JSON.parse($("#initial-data").html());
-} catch (err) {}
+if (initialDataEl) {
+  try {
+    initialData = JSON.parse(initialDataEl.innerHTML);
+  } catch (err) {}
+}
 
 // Wait until we have our initial collection from the backing
 // store before firing up the router.
