@@ -147,6 +147,11 @@ app.get("/note/:id/:action", _renderPage(function (notesCol, req, res) {
 // ----------------------------------------------------------------------------
 // Bootstrap
 // ----------------------------------------------------------------------------
-db = new sql.Database(DB_PATH, sql.OPEN_READWRITE, function () {
+db = new sql.Database(DB_PATH, sql.OPEN_READWRITE, function (err) {
+  if (err) {
+    global.console.log("DB ERROR", err);
+    throw err;
+  }
+
   app.listen(PORT);
 });

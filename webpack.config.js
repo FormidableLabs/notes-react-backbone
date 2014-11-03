@@ -15,8 +15,7 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.jsx$/, loader: "jsx-loader" },
-      { test: /\.hbs$/, loader: "handlebars-loader" }
+      { test: /\.jsx$/, loader: "jsx-loader" }
     ]
   },
   resolve: {
@@ -30,8 +29,14 @@ module.exports = {
       $: "jquery",
       jQuery: "jquery"
     }),
+    // Optimize
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin(),
+    new webpack.DefinePlugin({
+      "process.env": { // Signal production mode for React JS libs.
+        NODE_ENV: JSON.stringify("production")
+      }
+    }),
     // Manually do source maps to use alternate host.
     new webpack.SourceMapDevToolPlugin(
       "bundle.js.map",

@@ -3,8 +3,6 @@ Tasks
 
 ## Current
 
-* Get `NODE_ENV` working for React (silence warnings).
-
 * Add documentation to README.md.
 
 ## notes-react-ampersand

@@ -107,7 +107,8 @@ gulp.task("clean:dist", function () {
 gulp.task("build:dist", _webpack(buildCfg, [
   // Exclude optimize plugins.
   "DedupePlugin",
-  "UglifyJsPlugin"
+  "UglifyJsPlugin",
+  "DefinePlugin"
 ]));
 
 gulp.task("watch:dist", function () {
