@@ -54,6 +54,7 @@ module.exports = React.createClass({
   createNote: function (ev) {
     // [BB] Create a note model.
     this.props.notes.create({ title: this.state.newNote });
+    this.setState({ newNote: "" });
   },
 
   // Return true if filter token occurs in value.
