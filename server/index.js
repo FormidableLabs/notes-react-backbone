@@ -86,6 +86,12 @@ app["delete"]("/api/notes/:id", function (req, res) {
 // Common query params:
 // * `__mode`: `noss` for "no server side html", `nojs` for "no client side".
 
+// Helper for JSON injections.
+// See: http://benalpert.com/2012/08/03/preventing-xss-json.html
+var _toJSON = function (data) {
+  return JSON.stringify(data).replace(/<\//g, "<\\/");
+};
+
 app.get("/", function (req, res) {
   if (req.query.__mode === "noss") {
     // No server-side render.
@@ -106,7 +112,7 @@ app.get("/", function (req, res) {
     res.render("index", {
       layout: false,
       noJs: req.query.__mode === "nojs",
-      initialData: JSON.stringify(notesCol.toJSON()),
+      initialData: _toJSON(notesCol.toJSON()),
       content: content
     });
   });
@@ -141,7 +147,7 @@ app.get("/note/:id/:action", function (req, res) {
     res.render("index", {
       layout: false,
       noJs: req.query.__mode === "nojs",
-      initialData: JSON.stringify(notesCol.toJSON()),
+      initialData: _toJSON(notesCol.toJSON()),
       content: content
     });
   });
