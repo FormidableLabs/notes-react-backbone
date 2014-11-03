@@ -14,13 +14,13 @@ React. The app uses:
 * React for view logic.
 * Backbone for models, collections and routers.
 * Lodash for Backbone and utilities.
+* jQuery (Well, we _don't_ want to include it, but BB needs it for pushstate).
 * Markdown JS for markdown conversion.
 * Bootstrap for CSS (not JS).
 
 Notably, the app does _not_ include:
 
 * Bootstrap JS
-* jQuery (Well, we _don't_ want to include it, but BB needs it for pushstate).
 
 Instead relying on React to mostly take care of DOM work with a little bit
 of VanillaJS.

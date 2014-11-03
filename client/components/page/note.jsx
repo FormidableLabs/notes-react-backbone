@@ -6,6 +6,7 @@
  */
 /*jshint unused:false */
 var React = require("react");
+var _ = require("lodash/dist/lodash.underscore");
 var Base = require("./base.jsx");
 var NoteView = require("./note/view.jsx");
 var NoteEdit = require("./note/edit.jsx");
@@ -17,7 +18,7 @@ module.exports = React.createClass({
   componentDidMount: function() {
     // [BB] Add forceUpdate bindings.
     this.props.note.on("add change remove",
-      this.forceUpdate.bind(this, null), this);
+      _.bind(this.forceUpdate.bind, null), this);
   },
 
   componentWillUnmount: function() {
