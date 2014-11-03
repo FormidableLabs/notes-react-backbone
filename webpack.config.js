@@ -24,11 +24,6 @@ module.exports = {
     }
   },
   plugins: [
-    // Globals.
-    new webpack.ProvidePlugin({
-      $: "jquery",
-      jQuery: "jquery"
-    }),
     // Optimize
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin(),

@@ -116,7 +116,6 @@ var _renderPage = function (contentFn) {
       res.render("index", {
         layout: false,
         noJs: req.query.__mode === "nojs",
-        NODE_ENV: process.env.NODE_ENV,
         initialData: _toJSON(notesCol.toJSON()),
         content: content
       });
