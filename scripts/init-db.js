@@ -1,6 +1,7 @@
+#!/usr/bin/env node
 var sql = require("sqlite3");
 
-var DB_PATH = __dirname + "/notes.sqlite";
+var DB_PATH = __dirname + "/../server/notes.sqlite";
 /*jslint bitwise: true */
 var OPEN_STATE = sql.OPEN_READWRITE | sql.OPEN_CREATE;
 /*jslint bitwise: false */

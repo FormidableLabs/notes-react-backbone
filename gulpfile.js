@@ -38,6 +38,7 @@ gulp.task("jshint:client", function () {
 gulp.task("jshint:backend", function () {
   gulp
     .src([
+      "scripts/**/*.js",
       "server/**/*.js",
       "*.js"
     ])
