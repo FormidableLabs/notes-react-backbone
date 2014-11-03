@@ -101,7 +101,7 @@ gulp.task("build:dist", _webpack(_.merge({}, buildCfg, {
 
 gulp.task("watch:dist", function () {
   gulp.watch([
-    "app/js/app/**/*.{js,jsx}"
+    "client/**/*.{js,jsx}"
   ], ["build:dist"]);
 });
 
@@ -118,7 +118,11 @@ gulp.task("build:dev",  ["build:dist"]);
 gulp.task("server", function () {
   nodemon({
     script: "server/index.js",
-    ext: "js"
+    ext: "js",
+    watch: [
+      "server",
+      "client"
+    ]
   });
 });
 

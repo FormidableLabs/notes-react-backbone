@@ -3,9 +3,6 @@
  * Entry point.
  */
 /*jshint unused:false */
-// Polyfill JSON.
-require("json2");
-
 var $ = require("jquery");
 var Backbone = require("backbone");
 Backbone.$ = $;

@@ -1,22 +1,20 @@
-var sql = require("sqlite3"),
+var sql = require("sqlite3");
 
-  dbPath = __dirname + "/notes.sqlite",
-  /*jslint bitwise: true */
-  openState = sql.OPEN_READWRITE | sql.OPEN_CREATE,
-  /*jslint bitwise: false */
+var DB_PATH = __dirname + "/notes.sqlite";
+/*jslint bitwise: true */
+var OPEN_STATE = sql.OPEN_READWRITE | sql.OPEN_CREATE;
+/*jslint bitwise: false */
+var TABLE_NAME = "notes";
 
-  columns = "(id integer primary key autoincrement, title text, text text)",
-  createTable = "create table notes " + columns,
-  dropTable = "drop table if exists notes",
-
-  db = new sql.Database(dbPath, openState, function (err) {
-    if (err) {
-      db.close();
-      throw err;
-    }
-
-    db.run(dropTable, function () {
-      db.run(createTable);
-    });
+var db = new sql.Database(DB_PATH, OPEN_STATE, function (err) {
+  if (err) {
     db.close();
+    throw err;
+  }
+
+  db.run("drop table if exists " + TABLE_NAME, function () {
+    db.run("create table " + TABLE_NAME +
+      " (id integer primary key autoincrement, title text, text text)",
+      function () { db.close(); });
   });
+});
