@@ -1,11 +1,6 @@
 Tasks
 =====
 
-## Current
-
-* Gulp: Switch to jsxhint or maybe eslint?
-* Change repo name to `notes-react-backbone`.
-
 ## notes-func-test
 
 * Start `notes-func-test` for impl-independent functional tests (hook to dev. server + sqlite in memory.)
@@ -21,6 +16,7 @@ Tasks
 
 ## Later
 
+* Gulp: Switch to jsxhint or maybe eslint?
 * Make sure tests pass.
 * Implement / switch LS/no-server-side for `gh-pages` vs normal.
 
