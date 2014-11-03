@@ -3,18 +3,16 @@ Tasks
 
 ## Current
 
-* Add gzip compress for Express - http://inspiredjw.com/do-not-forget-to-use-gzip-for-express/
-    * Add a simple CURL helper to get gzipped size from `js-dist/bundle.js`
 * Add HBS whitespace stripping.
-* Make `__mode` not work in `production`.
+* Gulp: Switch to jsxhint or maybe eslint?
 * Change repo name to `notes-react-backbone`.
 * Start `notes-func-test` for impl-independent functional tests (hook to dev. server + sqlite in memory.)
-* Gulp: Switch to jsxhint or maybe eslint?
 
 ## notes-react-ampersand
 
 * Switch to ampersand components.
 * Look to `react-router`
+* Remove jQuery.
 * Replace Underscore with es5-shim / make sure we do polyfills right.
     * E.g., I have lots of `.bind()` around.
 

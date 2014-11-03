@@ -67,7 +67,35 @@ Run the server.
 $ NODE_ENV=production node server/index.js
 ```
 
+curl -I -H "Accept-Encoding: gzip,deflate" http://127.0.0.1:3000/app/js-dist/bundle.js | grep "Content-Encoding"
+
 ## React Notes
+
+### Optimizations
+
+To test out how optimized the build is, here are some useful curl commands:
+
+```
+$ gulp prod
+
+# Minified size
+$ curl -so /dev/null -w '%{size_download}\n' http://127.0.0.1:3000/app/js-dist/bundle.js
+267802
+
+# Minified gzipped size
+$ curl -so /dev/null -w '%{size_download}\n' --compressed http://127.0.0.1:3000/app/js-dist/bundle.js
+85223
+```
+
+And in dev (for a comparison):
+
+```
+$ gulp dev
+
+# Unminified size
+$ curl -so /dev/null -w '%{size_download}\n' http://127.0.0.1:3000/app/js-dist/bundle.js
+1169512
+```
 
 ### Server/Client State & Rendering
 

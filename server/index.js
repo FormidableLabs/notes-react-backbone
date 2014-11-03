@@ -94,10 +94,19 @@ var _toJSON = function (data) {
   return JSON.stringify(data).replace(/<\//g, "<\\/");
 };
 
+// Mode helper.
+var _getMode = function (req) {
+  if (process.env.NODE_ENV === "production") {
+    return null;
+  }
+
+  return req.query.__mode;
+};
+
 // Render a page with special "content" function.
 var _renderPage = function (contentFn) {
   return function (req, res) {
-    if (req.query.__mode === "noss") {
+    if (_getMode(req) === "noss") {
       // No server-side render.
       return res.render("index", { layout: false });
     }
@@ -117,7 +126,7 @@ var _renderPage = function (contentFn) {
       // Render with bootstrapped data.
       res.render("index", {
         layout: false,
-        noJs: req.query.__mode === "nojs",
+        noJs: _getMode(req) === "nojs",
         initialData: _toJSON(notesCol.toJSON()),
         content: content
       });
