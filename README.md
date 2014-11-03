@@ -62,7 +62,7 @@ $ ./scripts/init-db.js
 Run the server.
 
 ```
-$ node server/index.js
+$ NODE_ENV=production node server/index.js
 ```
 
 ## React Notes

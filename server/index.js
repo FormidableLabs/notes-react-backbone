@@ -92,66 +92,57 @@ var _toJSON = function (data) {
   return JSON.stringify(data).replace(/<\//g, "<\\/");
 };
 
-app.get("/", function (req, res) {
-  if (req.query.__mode === "noss") {
-    // No server-side render.
-    return res.render("index", { layout: false });
+// Render a page with special "content" function.
+var _renderPage = function (contentFn) {
+  return function (req, res) {
+    if (req.query.__mode === "noss") {
+      // No server-side render.
+      return res.render("index", { layout: false });
+    }
+
+    _getAllNotes(function (err, data) {
+      if (err) {
+        return res.status(500).send(err.message || err.toString() || "error");
+      }
+
+      // New collection from scratch for data for concurrency ease.
+      var notesCol = new NotesCollection(data);
+      var content = contentFn(notesCol, req, res);
+      if (content === false) {
+        return; // Short-circuit out. Already handled.
+      }
+
+      // Render with bootstrapped data.
+      res.render("index", {
+        layout: false,
+        noJs: req.query.__mode === "nojs",
+        NODE_ENV: process.env.NODE_ENV,
+        initialData: _toJSON(notesCol.toJSON()),
+        content: content
+      });
+    });
+  };
+};
+
+app.get("/", _renderPage(function (notesCol) {
+  return React.renderToString(new NotesView({
+    notes: notesCol
+  }));
+}));
+
+app.get("/note/:id/:action", _renderPage(function (notesCol, req, res) {
+  var noteModel = notesCol.get(req.params.id);
+  if (!noteModel) {
+    // Go to home page on missing note model.
+    res.redirect("/");
+    return false;
   }
 
-  _getAllNotes(function (err, data) {
-    if (err) {
-      return res.status(500).send(err.message || err.toString() || "error");
-    }
-
-    // New collection from scratch for data for concurrency ease.
-    var notesCol = new NotesCollection(data);
-    var notesView = new NotesView({ notes: notesCol });
-    var content = React.renderToString(notesView);
-
-    // Render with bootstrapped data.
-    res.render("index", {
-      layout: false,
-      noJs: req.query.__mode === "nojs",
-      initialData: _toJSON(notesCol.toJSON()),
-      content: content
-    });
-  });
-});
-
-app.get("/note/:id/:action", function (req, res) {
-  if (req.query.__mode === "noss") {
-    // No server-side render.
-    return res.render("index", { layout: false });
-  }
-
-  _getAllNotes(function (err, data) {
-    if (err) {
-      return res.status(500).send(err.message || err.toString() || "error");
-    }
-
-    // New collection from scratch for data for concurrency ease.
-    var notesCol = new NotesCollection(data);
-    var noteModel = notesCol.get(req.params.id);
-    if (!noteModel) {
-      // Go to home page on missing note model.
-      return res.redirect("/");
-    }
-
-    var noteView = new NoteView({
-      note: noteModel,
-      action: req.params.action
-    });
-    var content = React.renderToString(noteView);
-
-    // Render with bootstrapped data.
-    res.render("index", {
-      layout: false,
-      noJs: req.query.__mode === "nojs",
-      initialData: _toJSON(notesCol.toJSON()),
-      content: content
-    });
-  });
-});
+  return React.renderToString(new NoteView({
+    note: noteModel,
+    action: req.params.action
+  }));
+}));
 
 // ----------------------------------------------------------------------------
 // Bootstrap

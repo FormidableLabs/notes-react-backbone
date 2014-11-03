@@ -13,6 +13,7 @@
   <body>
     <div id="content" class="notes-html">{{{content}}}</div>
     {{#unless noJs}}
+      {{#if NODE_ENV}}<script>window.NODE_ENV="{{NODE_ENV}}";</script>{{/if}}
       <script id="initial-data" type="application/json">{{{initialData}}}</script>
       <script src="/app/js-dist/bundle.js"></script>
     {{/unless}}
