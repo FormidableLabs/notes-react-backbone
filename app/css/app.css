@@ -33,6 +33,7 @@ table#notes-list td .note-title {
   font-size: 1.1em;
   color: #3a3a3a;
   cursor: pointer;
+  text-decoration: none;
 }
 table#notes-list td.note-action {
   width: 95px;

@@ -88,5 +88,6 @@
   "trailing"      : true,   // Prohibit trailing whitespaces.
   "white"         : true,   // Check against strict whitespace / indent rules.
   "maxlen"        : 80,     // Line length.
-  "indent"        : 2       // Specify indentation spacing
+  "indent"        : 2,      // Specify indentation spacing
+  "unused"        : true
 }
