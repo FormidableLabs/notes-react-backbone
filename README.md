@@ -1,5 +1,5 @@
-Notes - React
-=============
+Notes - React + Backbone
+========================
 
 [![Build Status][trav_img]][trav_site]
 
@@ -115,8 +115,8 @@ vary across client / server side, instead of the more reliable, consistent
 `id` property.
 
 [trav]: https://travis-ci.org/
-[trav_img]: https://api.travis-ci.org/FormidableLabs/notes-react.svg
-[trav_site]: https://travis-ci.org/FormidableLabs/notes-react
+[trav_img]: https://api.travis-ci.org/FormidableLabs/notes-react-backbone.svg
+[trav_site]: https://travis-ci.org/FormidableLabs/notes-react-backbone
 [react]: http://facebook.github.io/react/
 [cjs]: http://wiki.commonjs.org/wiki/CommonJS
 [webpack]: http://webpack.github.io/
