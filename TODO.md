@@ -4,20 +4,18 @@ Tasks
 ## Current
 
 * Add documentation to README.md.
-* Remove jQuery? (Go for ie8 compat).
+
+## notes-react-ampersand
 
 * Switch to ampersand components.
 * Replace Underscore with es5-shim / make sure we do polyfills right.
     * E.g., I have lots of `.bind()` around.
 
-* Implement / switch LS/no-server-side for `gh-pages` vs normal.
-
-## notes-react-ampersand
-
 ## Later
 
 * Make sure tests pass.
 * Gulp: Switch to jsxhint or maybe eslint?
+* Implement / switch LS/no-server-side for `gh-pages` vs normal.
 
 ## Notes
 
