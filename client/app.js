@@ -6,8 +6,6 @@
 var $ = require("jquery");
 var Backbone = require("backbone");
 Backbone.$ = $;
-// Import bootstrap.
-require("bootstrap/dist/js/bootstrap");
 
 var React = require("react");
 var NotesCollection = require("./collections/notes");

@@ -60,8 +60,18 @@ gulp.task("check:all",  ["jshint"]);
 // Builders
 // ----------------------------------------------------------------------------
 // Create webpack task.
-var _webpack = function (cfg) {
-  var compiler = webpack(cfg); // Single compiler for caching.
+var _webpack = function (cfg, pluginExcludes) {
+  // Filter plugins by constructor name.
+  if (pluginExcludes) {
+    cfg = _.extend({}, cfg, {
+      plugins: _.reject(cfg.plugins, function (plugin) {
+        return _.indexOf(pluginExcludes, plugin.constructor.name) !== -1;
+      })
+    });
+  }
+
+  // Single compiler for caching.
+  var compiler = webpack(cfg);
 
   return function (done) {
     compiler.run(function (err, stats) {
@@ -94,11 +104,11 @@ gulp.task("clean:dist", function () {
     .pipe(rimraf());
 });
 
-gulp.task("build:dist", _webpack(_.merge({}, buildCfg, {
-  optimize: {
-    minimize: false
-  }
-})));
+gulp.task("build:dist", _webpack(buildCfg, [
+  // Exclude optimize plugins.
+  "DedupePlugin",
+  "UglifyJsPlugin"
+]));
 
 gulp.task("watch:dist", function () {
   gulp.watch([

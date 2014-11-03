@@ -22,9 +22,7 @@ var NotesCollection = require("../client/collections/notes");
 // Setup, Static Routes
 // ----------------------------------------------------------------------------
 app.use(bodyParser());
-app.engine(".hbs", exphbs({
-  extname: ".hbs"
-}));
+app.engine(".hbs", exphbs({ extname: ".hbs" }));
 app.set("view engine", ".hbs");
 app.set("views", __dirname + "/../templates");
 

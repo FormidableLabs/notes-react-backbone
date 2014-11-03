@@ -13,9 +13,6 @@ module.exports = {
     path: path.join(__dirname, "app/js-dist"),
     filename: "bundle.js"
   },
-  optimize: {
-    minimize: true
-  },
   module: {
     loaders: [
       { test: /\.jsx$/, loader: "jsx-loader" },
@@ -33,6 +30,8 @@ module.exports = {
       $: "jquery",
       jQuery: "jquery"
     }),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin(),
     // Manually do source maps to use alternate host.
     new webpack.SourceMapDevToolPlugin(
       "bundle.js.map",
