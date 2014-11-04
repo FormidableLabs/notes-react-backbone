@@ -67,8 +67,6 @@ Run the server.
 $ NODE_ENV=production node server/index.js
 ```
 
-curl -I -H "Accept-Encoding: gzip,deflate" http://127.0.0.1:3000/app/js-dist/bundle.js | grep "Content-Encoding"
-
 ## React Notes
 
 ### Optimizations
@@ -84,7 +82,7 @@ $ curl -so /dev/null -w '%{size_download}\n' http://127.0.0.1:3000/app/js-dist/b
 
 # Minified gzipped size
 $ curl -so /dev/null -w '%{size_download}\n' --compressed http://127.0.0.1:3000/app/js-dist/bundle.js
-85223
+85186
 ```
 
 And in dev (for a comparison):

@@ -5,15 +5,6 @@ Tasks
 
 * Start `notes-func-test` for impl-independent functional tests (hook to dev. server + sqlite in memory.)
 
-## notes-react-ampersand
-
-* Switch to ampersand components.
-* Look to `react-router`
-* Remove jQuery.
-* Replace Underscore with es5-shim / make sure we do polyfills right.
-    * E.g., I have lots of `.bind()` around.
-* Switch to Jade with whitespace stripping.
-
 ## Later
 
 * Gulp: Switch to jsxhint or maybe eslint?
