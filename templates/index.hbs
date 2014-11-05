@@ -13,8 +13,10 @@
   <body>
     <div id="content" class="notes-html">{{{content}}}</div>
     {{~#unless noJs~}}
+      <!--[if IE 8]><script src="/es5-shim/es5-shim.min.js"></script><![endif]-->
+      <!--[if IE 8]><script src="/es5-shim/es5-sham.min.js"></script><![endif]-->
       <script id="initial-data" type="application/json">{{{initialData}}}</script>
       <script src="/app/js-dist/bundle.js"></script>
-    {{/unless}}
+    {{~/unless~}}
   </body>
 </html>

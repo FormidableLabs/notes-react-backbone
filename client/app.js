@@ -16,9 +16,13 @@ var collection = NotesCollection.getInstance();
 // Helper: Start up app.
 var _startApp = function () {
   var router = new Router();
+
+  // Check if pushstate available to avoid bad listeners from Exoskeleton...
+  // http://stackoverflow.com/questions/22781394
+  var _havePushState = "history" in window && "pushState" in history;
+
   Backbone.history.start({
-    pushState: true,
-    hashChange: false
+    pushState: _havePushState
   });
 };
 
