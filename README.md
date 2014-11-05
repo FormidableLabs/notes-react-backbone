@@ -14,16 +14,14 @@ React. The app uses:
 * React for view logic.
 * Backbone for models, collections and routers.
 * Lodash for Backbone and utilities.
-* jQuery (Well, we _don't_ want to include it, but BB needs it for pushstate).
+* jQuery.
 * Markdown JS for markdown conversion.
 * Bootstrap for CSS (not JS).
+* es5-shim, es5-sham, html5shiv for IE8 support.
 
 Notably, the app does _not_ include:
 
 * Bootstrap JS
-
-Instead relying on React to mostly take care of DOM work with a little bit
-of VanillaJS.
 
 ## Development
 
@@ -78,11 +76,11 @@ $ gulp prod
 
 # Minified size
 $ curl -so /dev/null -w '%{size_download}\n' http://127.0.0.1:3000/app/js-dist/bundle.js
-267802
+279528
 
 # Minified gzipped size
 $ curl -so /dev/null -w '%{size_download}\n' --compressed http://127.0.0.1:3000/app/js-dist/bundle.js
-85186
+88977
 ```
 
 And in dev (for a comparison):
@@ -92,7 +90,7 @@ $ gulp dev
 
 # Unminified size
 $ curl -so /dev/null -w '%{size_download}\n' http://127.0.0.1:3000/app/js-dist/bundle.js
-1169512
+1206156
 ```
 
 ### Server/Client State & Rendering

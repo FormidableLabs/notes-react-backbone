@@ -39,6 +39,7 @@ app.use("/app/js-dist", express["static"]("app/js-dist"));
 app.use("/bootstrap", express["static"]("node_modules/bootstrap/dist"));
 app.use("/css", express["static"]("app/css"));
 app.use("/es5-shim", express["static"]("node_modules/es5-shim"));
+app.use("/html5shiv", express["static"]("node_modules/html5shiv/dist"));
 
 // ----------------------------------------------------------------------------
 // API
