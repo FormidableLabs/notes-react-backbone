@@ -1,5 +1,5 @@
 {
-  "name": "notes-react",
+  "name": "notes-react-backbone",
   "version": "0.0.3",
   "description": "Notes application (React/Backbone.js)",
   "dependencies": {
@@ -9,7 +9,6 @@
     "component-ajax": "0.0.2",
     "compression": "1.2.0",
     "es5-shim": "4.0.3",
-    "exoskeleton": "0.7.0",
     "express": "4.2.0",
     "express-handlebars": "1.1.0",
     "html5shiv": "3.7.2",
